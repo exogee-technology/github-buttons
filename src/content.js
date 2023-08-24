@@ -38,9 +38,13 @@ export const render = function (root, options, func) {
     target: '_blank',
     title: options.title || undefined,
     'aria-label': options['aria-label'] || undefined,
-    innerHTML: octicon(options['data-icon'], isLarge ? 16 : 14) + '&nbsp;'
+    innerHTML: octicon(options['data-icon'], isLarge ? 16 : 14)
   }, [
-    createElement('span', {}, [options['data-text'] || ''])
+    createElement('span', { className: 'spacer' }),
+    createElement('span', {}, [options['data-text'] || '']),
+    createElement('span', { className: 'spacer' }),
+    createElement('span', { className: 'dot' }),
+    createElement('span', { className: 'spacer' })
   ])
 
   const widget = root.appendChild(createElement('div', {
@@ -99,8 +103,8 @@ export const render = function (root, options, func) {
   fetch.call(this, apiBaseURL + api, function (error, json) {
     if (!error) {
       const data = json[property]
-      widget.appendChild(createElement('a', {
-        className: 'social-count',
+      btn.appendChild(createElement('a', {
+        className: 'github-count',
         href: json.html_url + href,
         rel: 'noopener',
         target: '_blank',
@@ -109,6 +113,6 @@ export const render = function (root, options, func) {
         ('' + data).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       ]))
     }
-    func(widget)
+    func(btn)
   })
 }

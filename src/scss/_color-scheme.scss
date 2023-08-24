@@ -5,6 +5,7 @@ $scheme: light !default;
 $enable-background-image-linear-gradient: str-index($scheme, '_high_contrast') == null !default;
 
 $btn-color: #EDE8F2;
+$btn-color-hover: rgba(237, 232, 242, 0.5);
 $btn-background-color-start: #1D162C;
 $btn-background-color-stop: if($enable-background-image-linear-gradient, darken($btn-background-color-start, 3.3333333333%), $btn-background-color-start) !default;
 $btn-border-color: primitive(colors, $scheme, btn, border) !default;
@@ -47,6 +48,7 @@ $octicon-heart-color: primitive(colors, $scheme, sponsors, fg) !default;
   &:hover,
   &:focus {
     @include blend(
+      $color: $btn-color-hover,
       $background-color: $btn-hover-background-color-stop,
       $background-position: 0 (-0.5em),
       $border-color: $btn-hover-border-color,
